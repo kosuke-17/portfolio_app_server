@@ -27,6 +27,7 @@ yarn-error.log*
 
 # local compile files
 dist
+pgdata
 
 # local env files
 .env
