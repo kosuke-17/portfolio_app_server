@@ -1,9 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { User, Prisma } from '@prisma/client';
+import { LoggerService } from 'src/logger/logger.service';
 
 @Injectable()
 export class UsersService {
+  private readonly logger: LoggerService;
   constructor(private prisma: PrismaService) {}
 
   async findOne({ id }: Prisma.UserWhereUniqueInput): Promise<User | null> {
@@ -13,7 +15,11 @@ export class UsersService {
   }
 
   async findAll(): Promise<User[]> {
-    return this.prisma.user.findMany();
+    try {
+      return await this.prisma.user.findMany();
+    } catch (e) {
+      this.logger.log(e);
+    }
   }
 
   async create(data: Prisma.UserCreateInput): Promise<User> {
