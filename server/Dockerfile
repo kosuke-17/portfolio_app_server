@@ -5,7 +5,7 @@ COPY packege.json ./
 COPY prisma ./prisma
 RUN npm install
 
-ENV PORT 3001
-EXPOSE 3001
+ENV PORT 3031
+EXPOSE 3031
 
 CMD ["node", "dist/main"]
