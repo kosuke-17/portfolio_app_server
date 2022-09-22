@@ -19,7 +19,7 @@ export const createApp = async () => {
 
 // swaggerの作成
 export const createSwagger = (app: INestApplication) => {
-  const config = new DocumentBuilder().setTitle('portfolio_app 仕様').build();
+  const config = new DocumentBuilder().setTitle('portfolio_app 仕様書').build();
 
   const document: OpenAPIObject = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/swagger', app, document);
