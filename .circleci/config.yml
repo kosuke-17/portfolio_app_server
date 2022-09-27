@@ -1,19 +1,33 @@
 version: 2.1
-
+orbs:
+  slack: circleci/slack@4.9.3
 jobs:
-  test:
+  notify:
     docker:
-      - image: circleci/
+      - image: "cimg/base:stable"
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD # context / project UI env-var reference
     steps:
-      - checkout
-      - save_cache:
-        key: yarn-{{ checksm "yarn.lock" }}
-        paths:
-          - node_modules
-      - run:
-          name: test ci
-          command: yarn test:ci
+      - slack/notify:
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*This is a text notification*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
+          event: always
 workflows:
-  test_workflow:
+  send-notification:
     jobs:
-      - test
+      - notify:
+          context: slack-portfolio_app
