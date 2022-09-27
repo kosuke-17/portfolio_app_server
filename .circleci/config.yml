@@ -30,4 +30,4 @@ workflows:
   send-notification:
     jobs:
       - notify:
-          context: slack-portfolio_app
+          context: slack-secrets
