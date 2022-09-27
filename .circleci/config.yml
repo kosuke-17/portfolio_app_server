@@ -52,7 +52,7 @@ jobs:
           name: yarn init
           command: yarn
       - save_cache:
-        key: yarn-{{ checksm "yarn.lock" }}
+        key: dependency-cache-{ checksm "yarn.lock" }}
         paths:
           - node_modules
       - run:
