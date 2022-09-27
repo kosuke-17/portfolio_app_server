@@ -1,0 +1,19 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      - image: circleci/
+    steps:
+      - checkout
+      - save_cache:
+        key: yarn-{{ checksm "yarn.lock" }}
+        paths:
+          - node_modules
+      - run:
+          name: test ci
+          command: yarn test:ci
+workflows:
+  test_workflow:
+    jobs:
+      - test
