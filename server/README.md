@@ -45,3 +45,5 @@ yarn start
 # 確認: http://localhost:3031/api/users
 # 空の配列又は[{"id":"cl8borg7h0007oo82dlad3lt2","createdAt":"2022-09-21T13:53:44.141Z","updatedAt":"2022-09-21T13:53:23.286Z","email":"test@test.com","name":"田中太郎","password":"1"}]のように追加済のuserデータが帰ってくること
 ```
+
+テスト修正
